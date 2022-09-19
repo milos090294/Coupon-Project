@@ -21,23 +21,38 @@
  
 
 <select name="type"  class="form-select " aria-label="Default select example">
-  <option  selected disabled>Type</option>
+  <option value= " "  >Type</option>
   @foreach ($types as $type)
-  <option value="{{$type->type}}">{{$type->type}}</option>
+  <option value="{{$type->type}}" @foreach ($coupons as $coupon)
+      
+
+    {{($type->type == $coupon->type) ? 'selected' : ''}}  
+
+  @endforeach >
+  
+  {{$type->type}}</option>
+
+
   @endforeach
 </select>
 
 
 <select name="subtype"   class="form-select " aria-label="Default select example">
-  <option selected disabled>Subtype</option>
+  <option value= " " >Subtype</option>
   @foreach ($subtypes as $subtype)
-  <option value="{{$subtype->subtype}}">{{$subtype->subtype}}</option>
+  <option value="{{$subtype->subtype}}"   
+
+    @foreach ($coupons as $coupon)
+    {{($subtype->subtype == $coupon->subtype) ? 'selected' : ''}}    
+    @endforeach
+    
+    >{{$subtype->subtype}}</option>
   @endforeach
 </select>
 
 
 <select name="value"  class="form-select " aria-label="Default select example">
-  <option selected disabled>Value</option>
+  <option value= " " >Value</option>
     @for($i = 1; $i <= 100; $i++)
     @if ($i % 5 == 0)
 
@@ -51,16 +66,46 @@
 
 
 <select name="status"   class="form-select" aria-label="Default select example">
-  <option selected disabled>Status</option>
-  <option value="active">Active</option>
-  <option value="inactive">Inactive</option>
-  <option value="used">Used</option>
+  <option value= " " >Status</option>
+  
+  <option value="active"   
+  @foreach ($coupons as $coupon)
+  {{($coupon->status) == 'active' ? 'selected' : ''}}    
+
+  @endforeach 
+ >Active</option>
+
+
+
+<option value="inactive"  
+
+@foreach ($coupons as $coupon)
+{{($coupon->status) == 'inactive' ? 'selected' : ''}} 
+
+@endforeach
+>Inactive</option>
+
+
+
+
+<option value="used"  
+
+@foreach ($coupons as $coupon)
+{{($coupon->status) == 'used' ? 'selected' : ''}} 
+  
+  @endforeach
+  >Used</option>
+
+
+  
+
+   
 </select>
 
 
 
 <select  name="used_times" class="form-select" aria-label="Default select example">
-  <option selected disabled>Used times</option>
+  <option value= " ">Used times</option>
   <option value="desc">Most used</option>
   <option value="asc">Least used</option>
  
